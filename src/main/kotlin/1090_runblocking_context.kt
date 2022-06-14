@@ -1,10 +1,11 @@
 package coroutines.examples
 
-import kotlinx.coroutines.CoroutineName
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 
 fun main() = runBlocking {
-    log("$coroutineContext")
-    log("${coroutineContext + CoroutineName("Name 1")}")
-    log("${coroutineContext + CoroutineName("Name 2")}")
+    log("My context: $coroutineContext")
+    log("My context: ${coroutineContext + CoroutineName("Name 1")}")
+    log("My context: ${coroutineContext + CoroutineName("Name 2")}")
+
+    log("My job: ${coroutineContext[Job]}")
 }
