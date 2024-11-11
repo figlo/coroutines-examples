@@ -16,6 +16,8 @@ fun main() {
                 log("$it")
             }
         }
+        delay(5000)
+        job.cancel()
     }
     log("End")
 }

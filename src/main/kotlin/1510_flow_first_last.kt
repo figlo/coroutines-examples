@@ -8,18 +8,21 @@ fun main() {
     runBlocking {
 
         val coldFlow = coldFlow2()
-        launch {
+        val coldJob = launch {
             println("coldFlow: " + coldFlow.first())
             println("coldFlow: " + coldFlow.last())
         }
 
         val hotFlow = coldFlow.shareIn(this, SharingStarted.Eagerly)
         delay(3000)
-        launch {
+        val hotJob = launch {
             println("hotFlow: " + hotFlow.first())
             println("hotFlow: " + hotFlow.last())
         }
 
+        delay(8000)
+        coldJob.cancel()
+        hotJob.cancel()
     }
     log("End")
 }
